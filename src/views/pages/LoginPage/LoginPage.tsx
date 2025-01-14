@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import Checkbox from "@mui/material/Checkbox";
-import backgroundImg from "../../../assets/login/login_background.png";
+import backgroundImg from "../../../assets/auth/login_background.png";
 
 // Styled Components cho Input và Label
 const Input = styled.input`
@@ -66,8 +65,12 @@ const LoginPage: React.FC = () => {
 
       <div className="h-[100vh] px-[10%] pt-[30px] w-[45%] bg-[#2D3250] relative z-10">
         <div className="flex text-white space-x-4">
-          <div className="px-4 py-2 border-b-2 border-[#F8B179]">Log In</div>
-          <div className="px-4 py-2">Sign Up</div>
+          <a href="/login" className="px-4 py-2 border-b-2 border-[#F8B179]">
+            Log In
+          </a>
+          <a href="/register" className="px-4 py-2">
+            Sign Up
+          </a>
         </div>
         <div className="text-white font-semibold text-[50px] mt-[150px]">
           Welcome back!
@@ -125,7 +128,17 @@ const LoginPage: React.FC = () => {
             Forgot password?
           </a>
         </div>
-        <div className="bg-[#F8B179] text-[#2D3252] rounded-md font-bold text-center w-[50%] py-3 mt-[50px]">
+        <div className="flex space-x-4 text-white  mt-[20px] mb-[10px]">
+          Don't have an account? &nbsp;
+          <a
+            href="/register "
+            className="text-[#676F9D] hover:text-[#4b4e69] cursor-pointer"
+          >
+            {" "}
+            Sign up
+          </a>
+        </div>
+        <div className="bg-[#F8B179] text-[#2D3252] rounded-md font-bold text-center w-[50%] py-3">
           Login
         </div>
       </div>
