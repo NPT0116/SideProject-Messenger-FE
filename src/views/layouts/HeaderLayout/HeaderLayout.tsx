@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom"
 const HeaderLayout:React.FC = () => {
     return (
         <div>
-            <div className="w-[100vw] h-[10vh]">
+            <div className="w-[100vw] h-[8vh]">
                 <Header></Header>
             </div>
             <Outlet></Outlet>
