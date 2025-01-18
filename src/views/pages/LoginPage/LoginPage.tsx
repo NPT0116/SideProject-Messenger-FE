@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import backgroundImg from "../../../assets/auth/login_background.png";
+import backgroundImg from "../../../assets/imgs/homeImages/background.jpg";
+import avatar1 from "../../../assets/imgs/homeImages/avatar1.jpg";
+import avatar2 from "../../../assets/imgs/homeImages/avatar2.jpg";
+import avatar3 from "../../../assets/imgs/homeImages/avatar3.jpg";
+import avatar4 from "../../../assets/imgs/homeImages/avatar4.jpg";
 
 // Styled Components cho Input và Label
 const Input = styled.input`
