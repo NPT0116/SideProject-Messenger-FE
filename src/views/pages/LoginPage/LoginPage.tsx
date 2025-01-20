@@ -1,150 +1,83 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import backgroundImg from "../../../assets/imgs/homeImages/background.jpg";
-import avatar1 from "../../../assets/imgs/homeImages/avatar1.jpg";
-import avatar2 from "../../../assets/imgs/homeImages/avatar2.jpg";
-import avatar3 from "../../../assets/imgs/homeImages/avatar3.jpg";
-import avatar4 from "../../../assets/imgs/homeImages/avatar4.jpg";
-
-// Styled Components cho Input và Label
-const Input = styled.input`
-  transition: border 0.2s ease-in-out;
-  min-width: 280px;
-  background-color: #424669 !important; /* Đảm bảo luôn giữ màu nền */
-  color: white;
-
-  &.filled {
-    border-color: #667eea;
-  }
-
-  &:focus + .label,
-  &:active + .label,
-  &.filled + .label {
-    font-size: 0.75rem;
-    transition: all 0.2s ease-out;
-    top: -0.4rem;
-    color: #667eea;
-  }
-
-  &:autofill,
-  &:autofill:hover,
-  &:autofill:focus,
-  &:autofill:active {
-    box-shadow: 0 0 0px 1000px #424669 inset !important; /* Xóa màu nền do autofill */
-    -webkit-text-fill-color: white !important; /* Đặt màu chữ */
-  }
-`;
-
-const Label = styled.label`
-  transition: all 0.2s ease-out;
-  top: 0.4rem;
-  left: 0;
-`;
+import backgroundImg from "../../../assets/imgs/login/login_background.jpg";
+import { Link } from "react-router-dom";
+import useAuth from "../../../hooks/useAuth";
+import Input from "../../components/Auth/Input";
+import AuthButton from "../../components/Auth/AuthButton";
+import GoogleGithubButton from "../../components/Auth/GoogleGithubButton";
 
 const LoginPage: React.FC = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const { login, loading, error } = useAuth();
 
-  const toggleInputClass = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { id, value } = e.target;
-    if (id === "username" && value !== "") {
-      e.target.classList.add("filled");
-    } else if (id === "username" && value === "") {
-      e.target.classList.remove("filled");
-    }
-    if (id === "password" && value !== "") {
-      e.target.classList.add("filled");
-    } else if (id === "password" && value === "") {
-      e.target.classList.remove("filled");
-    }
+  const handleLogin = async () => {
+    await login(username, password);
   };
 
   return (
-    <div className="w-full h-[100vh] bg-slate-600 relative">
-      <img
-        src={backgroundImg}
-        className="object-fit absolute top-0 right-0 h-full w-[55%]"
-        alt="Background"
-      />
+    <div
+      className="overflow-auto w-full h-[100vh] flex justify-center items-center bg-cover bg-center bg-no-repeat relative pt-4"
+      style={{
+        backgroundImage: `url(${backgroundImg})`,
+        fontFamily: "'Montserrat', cursive",
+      }}
+    >
+      <div className="bg-white w-[667px] h-[680px] rounded-3xl py-6 px-10">
+        <div
+          className="font-black text-[60px] text-center"
+          style={{ fontFamily: "'Montserrat', cursive" }}
+        >
+          Welcome back
+        </div>
+        <div
+          className="text-center text-[20px] mt-[-10px]"
+          style={{ fontFamily: "'Montserrat', cursive" }}
+        >
+          Please enter your details to sign in.
+        </div>
 
-      <div className="h-[100vh] px-[10%] pt-[30px] w-[45%] bg-[#2D3250] relative z-10">
-        <div className="flex text-white space-x-4">
-          <a href="/login" className="px-4 py-2 border-b-2 border-[#F8B179]">
-            Log In
-          </a>
-          <a href="/register" className="px-4 py-2">
-            Sign Up
-          </a>
+        <div className="flex space-x-4 justify-center w-full my-8">
+          <GoogleGithubButton>google</GoogleGithubButton>
+          <GoogleGithubButton>github</GoogleGithubButton>
         </div>
-        <div className="text-white font-semibold text-[50px] mt-[150px]">
-          Welcome back!
+        <div className="flex space-x-2 w-full items-center justify-center mb-8">
+          <hr className="w-[40%] h-1 bg-[#D9D9D9]" />
+          <div className="text-[25px]">or</div>
+          <hr className="w-[40%] h-1 bg-[#D9D9D9]" />
         </div>
-        <div className="text-white text-[20px] mb-10">
-          Login to your account
-        </div>
-        <div className="mb-4 relative">
+        <div className="flex flex-col space-y-6 mb-4">
           <Input
-            className="input border border-gray-400 text-white appearance-none rounded w-full px-3 py-3 pt-5 pb-2 focus focus:border-indigo-600 focus:outline-none active:outline-none active:border-indigo-600 bg-[#424669]"
-            id="username"
-            type="text"
             value={username}
-            onChange={(e) => {
-              setUsername(e.target.value);
-              toggleInputClass(e); // Thêm lớp "filled" khi có giá trị
-            }}
-          />
-          <Label
-            htmlFor="password"
-            className="label absolute mb-0 pl-3 leading-tighter text-gray-400 text-base mt-2 cursor-text"
-          >
-            Username
-          </Label>
-        </div>
-        <div className="mb-4 relative">
+            onChange={(e) => setUsername(e.target.value)}
+            type="text"
+            placeholder="username"
+          ></Input>
+
           <Input
-            className="input border border-gray-400 text-white appearance-none rounded w-full px-3 py-3 pt-5 pb-2 focus focus:border-indigo-600 focus:outline-none active:outline-none active:border-indigo-600 bg-[#424669]"
-            id="password"
-            type="password"
             value={password}
-            onChange={(e) => {
-              setPassword(e.target.value);
-              toggleInputClass(e); // Thêm lớp "filled" khi có giá trị
-            }}
-          />
-          <Label
-            htmlFor="password"
-            className="label absolute mb-0 pl-3 leading-tighter text-gray-400 text-base mt-2 cursor-text"
-          >
-            Password
-          </Label>
+            onChange={(e) => setPassword(e.target.value)}
+            type="password"
+            placeholder="password"
+          ></Input>
         </div>
-        <div className="flex items-center justify-between">
-          <label className="flex items-center space-x-2 text-white cursor-pointer">
+        <div className="flex justify-between text-[18px] mb-4">
+          <div className="flex space-x-2 items-center">
             <input
               type="checkbox"
-              className="w-5 h-5 bg-transparent border-2 border-[#F8B179] rounded appearance-none cursor-pointer relative checked:bg-[#2D3250] checked:before:content-['✓'] checked:before:text-[#F8B179] checked:before:text-lg checked:before:absolute checked:before:top-[-6px] checked:before:left-[50%] checked:before:transform checked:before:-translate-x-[50%]"
+              className="appearance-none bg-[#D9D9D9] w-5 h-5 rounded-md checked:bg-[#D9D9D9] checked:before:content-['✔'] checked:before:text-black checked:before:text-center checked:before:block checked:before:w-full checked:before:h-full"
             />
-
-            <span>Remember password</span>
-          </label>
-
-          <a href="#" className="text-[#676F9D] hover:text-[#4b4e69]">
+            <div>Remember me</div>
+          </div>
+          <a href="#" className="underline">
             Forgot password?
           </a>
         </div>
-        <div className="flex space-x-4 text-white  mt-[20px] mb-[10px]">
-          Don't have an account? &nbsp;
-          <a
-            href="/register "
-            className="text-[#676F9D] hover:text-[#4b4e69] cursor-pointer"
-          >
-            {" "}
-            Sign up
-          </a>
-        </div>
-        <div className="bg-[#F8B179] text-[#2D3252] rounded-md font-bold text-center w-[50%] py-3">
-          Login
-        </div>
+        {error && <div className="text-red-500 text-center">{error}</div>}
+        <AuthButton onClick={handleLogin} disabled={loading}>
+          {loading ? "Loading..." : "Sign In"}
+        </AuthButton>
       </div>
     </div>
   );

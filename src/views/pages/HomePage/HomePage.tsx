@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import backgroundImg from "../../../assets/imgs/homeImages/home_background.jpg";
-import avatar1 from "../../../assets/imgs/homeImages/avatar1.jpg";
-import avatar2 from "../../../assets/imgs/homeImages/avatar2.jpg";
-import avatar3 from "../../../assets/imgs/homeImages/avatar3.jpg";
-import avatar4 from "../../../assets/imgs/homeImages/avatar4.jpg";
+import backgroundImg from "../../../assets/imgs/home/home_background.jpg";
+import avatar1 from "../../../assets/imgs/home/avatar1.jpg";
+import avatar2 from "../../../assets/imgs/home/avatar2.jpg";
+import avatar3 from "../../../assets/imgs/home/avatar3.jpg";
+import avatar4 from "../../../assets/imgs/home/avatar4.jpg";
 
 // Styled Components
 const Container = styled.div`
